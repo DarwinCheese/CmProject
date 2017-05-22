@@ -1,25 +1,15 @@
-var http = require('http');
+var request = require('request');
 
-function getTestPersonaLoginCredentials(callback) {
-
-    return http.post({
-        host: 'https://autocollectapi.cmpayments.com',
-        path: '/v1.0/token'
-    }, function(response) {
-        // Continuously update stream with data
-        var body = '';
-        response.on('data', function(d) {
-            body += d;
-        });
-        response.on('end', function() {
-
-            // Data reception is done, do whatever with it!
-            var parsed = JSON.parse(body);
-            callback({
-                email: parsed.email,
-                password: parsed.pass
-            });
-        });
-    });
-
-}
+var auth = {
+    url : 'https://autocollectapi.cmpayments.com/v1.0/token',
+    method: 'POST',
+    headers: {
+        'Content-Type':'application/x-www-form-urlencoded',
+        'X-CM-MERCHANT':'AMR-745B5C98-648A-45A1-ACB4-BDAD2AB9E936'
+    },
+    body: 'grant_type=password&username=Avans1ApiUser&password=59bf8b536a0802561c8be4e3fd1b300847f5549d190499670921a3e40467d707'
+};
+request(auth, function(err, res, body) {  
+    var json = JSON.parse(body);
+    console.log(json);
+});
