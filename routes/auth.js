@@ -1,3 +1,7 @@
+
+var express = require('express');
+var router = express.Router();
+var path = require('path');
 var request = require('request');
 
 var auth = {
@@ -10,6 +14,8 @@ var auth = {
     body: 'grant_type=password&username=Avans1ApiUser&password=59bf8b536a0802561c8be4e3fd1b300847f5549d190499670921a3e40467d707'
 };
 request(auth, function(err, res, body) {  
-    var json = JSON.parse(body);
-    console.log(json);
+    var result = JSON.parse(body);
+    var token = result.access_token
+    Response.json(token);
 });
+module.exports = router;
