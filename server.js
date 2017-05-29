@@ -9,11 +9,11 @@ app.all('*', function(request, response, next) {
  next();
 })
 
+app.use('/auth', require('./routes/auth'));
 app.use('/checkout', require('./routes/checkout'));
 app.use('/debitor', require('./routes/debitor'));
 app.use('/payment_plan', require('./routes/payment_plan'));
 app.use('/group', require('./routes/group'));
-app.use('/auth', require('./routes/auth'));
 
 app.all('*', function(request, response) {
  response.status(404);
