@@ -1,6 +1,7 @@
 var config = require('./config.json');
 var express = require('express');
 var app = express();
+var token;
 
 app.set('PORT', config.webPort);
 

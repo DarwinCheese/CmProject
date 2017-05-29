@@ -5,6 +5,7 @@ var path = require('path');
 var request = require('request');
 var EventEmitter = require("events").EventEmitter;
 var body = new EventEmitter();
+var main = require('../server');
 
 var auth = {
     url : 'https://autocollectapi.cmpayments.com/v1.0/token',
@@ -24,21 +25,7 @@ request(auth, function(err, res, data) {
 body.on('update', function (response) {
     var result = JSON.parse(body.data);
     var token = result.access_token;
-   
-   var payment_plan_get = {
-    url : 'https://autocollectapi.cmpayments.com/v1.0/payment-plans',
-    method: 'GET',
-    headers: {
-        'Content-Type':'application/json',
-        'Authorization':'Bearer '+ token +'' 
-    }  
-};
-console.log(payment_plan_get.headers);
-request(payment_plan_get, function(err, res, data) {  
-    var result = JSON.parse(data);
-    console.log(result)
+    main.token = token;
 });
-});
-console.log(body.token)
-module.exports = token
+
 module.exports = router;
