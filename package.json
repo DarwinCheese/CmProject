@@ -1,21 +1,28 @@
 {
-  "name": "cm",
+  "name": "cmproject",
   "version": "1.0.0",
-  "description": "cm project",
+  "description": "",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.15.2",
-    "request": "^2.81.0"
+    "events": "^1.1.1",
+    "express": "^4.15.3",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "sequence": "^3.0.0"
   },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-http": "^3.0.0",
-    "mocha": "^3.4.1"
-  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node server.js"
   },
-  "author": "Teun Roelandt",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeeBeeEight/CmProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BeeBeeEight/CmProject/issues"
+  },
+  "homepage": "https://github.com/BeeBeeEight/CmProject#readme"
 }
