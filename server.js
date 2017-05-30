@@ -6,8 +6,10 @@ var routes_v2 = require('./api/routes_v2');
 
 var app = express();
 
-app.use('/api/v1', routes_v1);
-app.use('/api/v2', routes_v2);
+app.all('*', function(request, response) {
+ response.status(404);
+ response.send('404 - Not found');
+})
 
 app.listen(process.env.PORT || 3000, function(){
 	console.log('De server luistert op port 3000');	
