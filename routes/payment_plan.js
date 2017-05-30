@@ -17,7 +17,16 @@ var payment_plan_get = {
     }  
 };
 
-request(payment_plan_get, function(err, res, body) {  
+request(payment_plan_get, function(err, res, body) {
+    
+    if(err) {
+        console.log(err);
+    }
+    if(res) {
+        // console.log("res = ");
+        // console.dir(res);
+    }
+
     var result = JSON.parse(body);
     console.log(result);
 });
