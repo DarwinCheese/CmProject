@@ -5,7 +5,9 @@
   "main": "server.js",
   "dependencies": {
     "express": "^4.15.2",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "sequence": "^3.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
