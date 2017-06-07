@@ -13,7 +13,7 @@ app.all('*', function(request, response, next) {
 
 app.use('/auth', require('./routes/auth'));
 app.use('/tikckets', require('./routes/tickets'));
-app.use('/dummy', require('/routes/dummy'))
+app.use('/dummy', require('./routes/dummy'))
 
 
 app.all('*', function(request, response) {
