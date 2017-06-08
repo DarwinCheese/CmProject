@@ -1,29 +1,35 @@
-var config = require('./config.json');
-var express = require('express');
-var app = express();
-var http = require('http');
-var token;
-
-app.set('PORT', config.webPort);
-
-app.all('*', function(request, response, next) {
- console.log(request.method + " " + request.url);
- next();
-})
-
-app.use('/auth', require('./routes/auth'));
-app.use('/tikckets', require('./routes/tickets'));
-app.use('/dummy', require('./routes/dummy'))
+var request = require('request');
+var access_token;
 
 
-app.all('*', function(request, response) {
- response.status(404);
- response.send('404 - Not found');
-})
+var auth = {
+    url : 'https://autocollectapi.cmpayments.com/v1.0/token',
+    method: 'POST',
+    headers: {
+        'Content-Type':'application/x-www-form-urlencoded',
+        'X-CM-MERCHANT':'AMR-745B5C98-648A-45A1-ACB4-BDAD2AB9E936'
+    },
+    body: 'grant_type=password&username=Avans1ApiUser&password=59bf8b536a0802561c8be4e3fd1b300847f5549d190499670921a3e40467d707'
+};
 
-var port = process.env.PORT || app.get('PORT');
-app.listen(port, function() {
- console.log('Server app is listening on port' + port);
-})
+var paymentplans = {
+    url: 'https://autocollectapi.cmpayments.com/v1.0/payment-plans',
+    method: 'GET',
+    headers: {
+        'Authorisation': access_token, 
+        'Content-Type': 'application/json'
+    }
+};
 
-module.exports = app;
+request(auth, function(err, res, body) {  
+    var json = JSON.parse(body);
+    //console.log(json);
+    access_token = json.access_token;
+    console.log(access_token);
+});
+
+
+request(paymentplans, function(err, res, body){
+    var json = JSON.parse(body);
+    console.log(json);
+});
