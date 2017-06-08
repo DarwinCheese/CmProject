@@ -16,48 +16,25 @@ var auth = {
     body: 'grant_type=password&username=Avans1ApiUser&password=59bf8b536a0802561c8be4e3fd1b300847f5549d190499670921a3e40467d707'
 };
 
- request(auth, function(err, res, data) {  
 
+
+request(auth, function(err, res, data) {  
     var result = JSON.parse(data);
     token = result.access_token;
     console.log(token)
-
-    var payment_plan_get = {
-    url : 'https://autocollectapi.cmpayments.com/v1.0/payment-plans',
-    method: 'GET',
-    headers: {
-        'Content-Type':'application/json',
-        'Authorization':'Bearer '+ token +'' 
-    }  
-};
-
-request(payment_plan_get, function(err, res, body) {
     
-    if(err) {
-        console.log(err);
-    }
-    if(res) {
-        // console.log("res = ");
-        // console.dir(res);
-    }
+    var payment_plan_get = {
+        url : 'https://autocollectapi.cmpayments.com/v1.0/payment-plans',
+        method: 'GET',
+        headers: {
+            'Content-Type':'application/json',
+            'Authorization':'Bearer '+ token +'' 
+        }  
+    };
+    request(payment_plan_get, function(err, res, body) {
+        var result = JSON.parse(body);
+        console.log(result);
+    });
+});
 
-    var result = JSON.parse(body);
-    console.log(result);
-});
-});
-/*
-while(token == undefined){
-setTimeout(function () {console.log("wait")}, 120);
-}
-*/
-console.log(token)
-console.log("het token is aangekomen")
-
-/*
-body.on('update', function (response) {
-    var result = JSON.parse(body.data);
-    var token = result.access_token;
-    main.token = token;
-});
-*/
 module.exports = router;
