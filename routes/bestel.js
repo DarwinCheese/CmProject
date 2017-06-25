@@ -21,17 +21,23 @@ router.post('/bestel', function(req, res){
 	    token = result.access_token;
 	    console.log(token);
 
+	    var name = req.body.name;
+	    var phone_number= req.body.phone_number;
+	    var email = req.body.email;
+	    var reference = req.body.reference;
+	    var total_amount = req.body.total_amount;
+
 	    var debtor_request = 
 	    [
 	        {
 	            "payment_plan_id": "APP-ED0F3848-6589-405B-9CDB-A661428F0537",
-	            "reference": "OWN-DEBTOR-REF",
-	            "name": "Darwin Gutierrez",
-	            "phone_number": "0031650702191",
-	            "email": "johnsmith@example.com",
+	            "reference": ""+reference+"",
+	            "name": ""+name+"",
+	            "phone_number": ""+phone_number+"",
+	            "email": ""+email+"",
 	            "currency": "EUR",
 	            "locale": "nl-NL",
-	            "total_amount": 10.00,
+	            "total_amount": ""+total_amount+"",
 	            "no_direct_debit": true,
 	            "page_content_settings": {
 	              "title": "Tickets",
@@ -62,15 +68,15 @@ router.post('/bestel', function(req, res){
 	        var checkout_request = 
 			    {
 					  "payment_plan_id": "APP-E3FE0E5D-8255-4436-BDAA-629E650FFDC1",
-					  "reference": "OWN-DEBTOR-REF",
-					  "name": "Darwin Gutierrez",
+					  "reference": ""+reference+"",
+					  "name": ""+name+"",
 					  "iban": "NL52INGB2088416456",
 					  "bic": "INGBNL2A",
-					  "phone_number": "0031600000000",
-					  "email": "johnsmith@example.com",
+					  "phone_number": ""+phone_number+"",
+					  "email": ""+email+"",
 					  "currency": "EUR",
 					  "locale": "nl-NL",
-					  "total_amount": 10.00,
+					  "total_amount": ""+total_amount+"",
 					  "page_content_settings": {
 					    "title": "Your own title",
 					    "content": "Page content to inform the debtor",
