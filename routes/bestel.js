@@ -100,48 +100,15 @@ router.post('/bestel', function(req, res){
 
 		    request(createCheckout, function(error, results, json) {
 		    	var resultCheckout = JSON.parse(json);
-		    	res.send(resultCheckout.check_out_url);
+		    	res.send({
+	          		"code":200,
+	          		"checkout_url":""+resultCheckout.check_out_url+""
+	        	})
+		    	// res.send(resultCheckout.check_out_url);
 		    });
 
 	    });
 	});
 });
-
-// router.get('/debtors', function(req, res){
-// 	var auth = {
-// 	    url : 'https://autocollectapi.cmpayments.com/v1.0/token',
-// 	    method: 'POST',
-// 	    headers: {
-// 	        'Content-Type':'application/x-www-form-urlencoded',
-// 	        'X-CM-MERCHANT':'AMR-3B2702F1-E2F0-472E-8249-7E13749E2831'
-// 	    },
-// 	    body: 'grant_type=password&username=Avans2ApiUser&password=14ce32f30af612879385901c6827625e7c8042bb6093b1e6be644cb82acc3212'
-// 	};
-
-// 	request(auth, function(err, result, data) {  
-// 	    var result = JSON.parse(data);
-// 	    token = result.access_token;
-// 	    console.log(token);
-
-// 	    var createDebtor = {
-// 	        url : 'https://autocollectapi.cmpayments.com/v1.0/groups/AGR-10AFAB2A-A414-43A5-8EB3-003DA265EBEE/debtors',
-// 	        method: 'POST',
-// 	        headers: {
-// 	            'Content-Type':'application/json',
-// 	            'Authorization':'Bearer ' + token + '' 
-// 	        }
-// 	        // body: JSON.stringify(debtor_request)
-// 	    };
-
-// 	    // request(getDebtors, function(error, results, body) {
-// 	    //     //console.log(body);
-// 	    //     var result = JSON.parse(body);
-// 	    //     console.log(results);
-// 	    // });
-
-// 	});
-
-
-//});
 
 module.exports = router;
